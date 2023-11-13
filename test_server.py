@@ -15,5 +15,7 @@ def test_teacher_creation():
     print(response.status_code)
     print(response.json())
 
-if __name__ == "__main__":
-    test_teacher_creation()
+#if __name__ == "__main__":
+#    test_teacher_creation()
+
+
