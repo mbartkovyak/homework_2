@@ -4,9 +4,14 @@ from peewee import SqliteDatabase, Model, CharField, IntegerField, ForeignKeyFie
 
 db = SqliteDatabase('sqlite3.db')
 
+
 class BaseModel(Model):
     class Meta:
         database = db
+
+class Student(BaseModel):
+    name = CharField()
+    age = IntegerField()
 
 
 class Teacher(BaseModel):
@@ -16,10 +21,11 @@ class Teacher(BaseModel):
 
 class Mark(BaseModel):
     teacher = ForeignKeyField(Teacher, backref='marks')
+    student = ForeignKeyField(Student, backref='marks')
     value = IntegerField()
     timestamp = DateTimeField(default=datetime.now)
 
 if __name__ == "__main__":
     db.connect()
-    db.create_tables([Teacher, Mark])
+    db.create_tables([Teacher, Mark, Student])
     db.close()
